@@ -19,10 +19,15 @@ var client = new Twitter({
   access_token_secret: 'S5ZL9cMCazTwbGeV6hGdpkmlbuIagkLqk1trP9N2zYxgR'
 });
 
-var params = {screen_name: 'apphack7'};
-client.get('favorites/list', function(error, tweets, response) {
+//var params = {screen_name: 'apphack7'};
+//client.get('favorites/list', function(error, tweets, response) {
+  //if(error) throw error;
+  //console.log(tweets);
+//});
+
+client.post('statuses/update', {status: 'Penises'}, function(error, tweets, res) {
   if(error) throw error;
-  console.log(tweets);
+  console.log(response);
 });
 
 // view engine setup
