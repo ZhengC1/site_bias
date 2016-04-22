@@ -19,20 +19,12 @@ var client = new Twitter({
   access_token_secret: 'S5ZL9cMCazTwbGeV6hGdpkmlbuIagkLqk1trP9N2zYxgR'
 });
 
-var params = {track: 'javascript'};
-client.stream('statuses/filter', params, function(stream) {
-  stream.on('data', function(tweet) {
-    console.log(tweet.text);
-  });
-
-  stream.on('error', function(error) {
-    throw error;
-  });
+var params = {screen_name: 'apphack7'};
+//username='apphack7';
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if(error) console.log(error);
+  console.log(tweets.length);
 });
-//client.get('statuses/filter', params, function(error, tweets, response) {
-  //if(error) throw error;
-  //console.log(tweets.text);
-//});
 
 //client.post('statuses/update', {status: 'Chun is cool'}, function(error, tweets, res) {
   //if(error) {
