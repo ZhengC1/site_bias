@@ -19,11 +19,10 @@ var client = new Twitter({
   access_token_secret: 'S5ZL9cMCazTwbGeV6hGdpkmlbuIagkLqk1trP9N2zYxgR'
 });
 
-var params = {screen_name: 'nodejs'};
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error) {
-    console.log(tweets);
-  }
+var params = {screen_name: 'apphack7'};
+client.get('favorites/list', function(error, tweets, response) {
+  if(error) throw error;
+  console.log(tweets);
 });
 
 // view engine setup
