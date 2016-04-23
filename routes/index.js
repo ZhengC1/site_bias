@@ -12,7 +12,7 @@ var client = new Twitter({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Twitter Political Scraper', info: [], cat: []});
+  res.render('index', { title: 'Twitter Political Scraper', info: []});
 });
 
 router.post('/searchname', function(req,res) {
