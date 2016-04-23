@@ -10,6 +10,22 @@ var client = new Twitter({
   access_token_secret: 'S5ZL9cMCazTwbGeV6hGdpkmlbuIagkLqk1trP9N2zYxgR'
 });
 
+
+//parse text files here
+var fs = require('fs');
+var _negative = new Array();
+var _positive = new Array();
+
+fs.readFile('public/tweets/positive.txt', function(err,data) {
+  if(err) throw err;
+  _positive = data.toString().split('\n');
+});
+
+fs.readFile('public/tweets/negative.txt', function(err,data) {
+  if(err) throw err;
+  _negative = data.toString().split('\n');
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Twitter Political Scraper', info: []});
@@ -24,7 +40,7 @@ router.post('/searchname', function(req,res) {
         tweetArr.push((tweets[i].text).split(" "));
     }
     console.log(tweetArr);
-    res.render('index', { title: 'Tweets', info: tweetArr});
+    res.render('index', { title: 'Tweets', info: tweets});
   });
 });
 

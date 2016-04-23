@@ -10,5 +10,5 @@ block content
           button(type='submit') submit 
 
   each tweet in info ? info : ['']
-    p= tweet
+    div= tweet.text
 
