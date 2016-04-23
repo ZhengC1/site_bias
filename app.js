@@ -12,17 +12,6 @@ var app = express();
 
 //parse text files here
 var fs = require('fs');
-
-fs.readFile('public/tweets/positive.txt', function(err,data) {
-  if(err) throw err;
-  process.env.positive = data.toString().split('\n');
-});
-
-fs.readFile('public/tweets/negative.txt', function(err,data) {
-  if(err) throw err;
-  process.env.negative = data.toString().split('\n');
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

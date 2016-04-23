@@ -10,6 +10,22 @@ var client = new Twitter({
   access_token_secret: 'S5ZL9cMCazTwbGeV6hGdpkmlbuIagkLqk1trP9N2zYxgR'
 });
 
+//parse text files here
+var fs = require('fs');
+var positive = new Array();
+var negative = new Array();
+
+fs.readFile('public/tweets/positive.txt', function(err,data) {
+  if(err) throw err;
+  positive.push(data.toString().split('\n'));
+});
+
+fs.readFile('public/tweets/negative.txt', function(err,data) {
+  if(err) throw err;
+  negative.push(data.toString().split('\n'));
+});
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Twitter Political Scraper', info: []});
