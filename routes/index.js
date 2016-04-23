@@ -36,21 +36,21 @@ router.post('/searchname', function(req,res) {
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
     var neg_count = 0;
     var pos_count = 0;
-    console.log(process.env.positive.length);
-    console.log(process.env.negative.length);
+    console.log(positive.length);
+    console.log(negative.length);
     for(var i = 0; i < tweets.length; i++)
     {
       var line = tweets[i].text.split(" ");
       for(j = 0; j < line.length; j++)
       {
-        for (q=0;q<process.env.negative.length;q++) {
-          if (q<process.env.positive.length) {
-            if (line[j]===process.env.positive[q]) {
+        for (q=0;q<negative.length;q++) {
+          if (q<positive.length) {
+            if (line[j]===positive[q]) {
               pos_count++;
               break;
             }
           }
-          if (line[j]===process.env.negative[q]) {
+          if (line[j]===negative[q]) {
             neg_count++;
             break;
           }
