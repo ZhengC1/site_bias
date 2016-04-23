@@ -25,8 +25,11 @@ var client = new Twitter({
   //console.log(tweets);
 //});
 
-client.post('statuses/update', {status: 'Penises'}, function(error, tweets, res) {
-  if(error) throw error;
+client.post('statuses/update', {status: 'superpenis'}, function(error, tweet, response) {
+  if(error) 
+      {
+          console.log("has error");
+      };
   console.log(response);
 });
 
