@@ -10,5 +10,7 @@ block content
           button(type='submit') submit 
 
   each tweet in info ? info : ['']
-    div= tweet.text
+    div.row
+       div.col-md-8=tweet.text
+       
 

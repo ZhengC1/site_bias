@@ -37,11 +37,30 @@ router.post('/searchname', function(req,res) {
   var params = { screen_name: req.body.screen_name, count: 100 };
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
     var tweetArr = new Array();
+    var neg_count = 0
+    var pos_count = 0
     for(var i = 0; i < tweets.length; i++)
     {
+        var line = tweets[i].text.split(" ");
+        for(j = 0; j < line.length; j++)
+        {
+            if(line[j] in process.env.positive)
+            {
+                pos_count++;
+            }
+        }
+        for(j = 0; j < line.length; j++)
+        {
+            if(line[j] in process.env.negative)
+            {
+                neg_count++;
+            }
+        }
         tweetArr.push((tweets[i].text).split(" "));
     }
     console.log(tweetArr);
+    console.log(pos_count);
+    console.log(neg_count);
     res.render('index', { title: 'Tweets', info: tweets});
   });
 });
