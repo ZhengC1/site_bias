@@ -17,9 +17,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/twitter', function(req, res, next) {
   var params = { screen_name: req.body.screen_name };
-   client.stream('statuses/filter', {track: params}, function(stream) {
+   client.stream('statuses/filter', {track: 'trump'}, function(stream) {
       stream.on('data', function(data){
-          console.log(params.text);
+          console.log(data.text);
       });
       stream.on('error', function(error){
           console.log(error);
