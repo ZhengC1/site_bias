@@ -6,7 +6,7 @@ block content
   form.row(method='get' action='/twitter')
     .col-md-12
       .block
-          input(type="text", placeholder="Screen Name", name="screen_name")
+          input(type="text", placeholder="Screen Name", name="search_id")
           button(type='submit') test
 
   each tweet in info.length ? info : ['']
