@@ -15,11 +15,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Twitter Political Scraper', info: [] });
 });
 
-router.get('/twitter', function(req, res, next) {
-  client.stream('statuses/filter', {track: ['love', 'hate']}, function(stream) {
-      stream.on('data', function(data){
-          console.log(data);
-      });
+router.post('/twitter', function(req, res, next) {
+  var params = { screen_name: req.body.screen_name };
+  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if(error) console.log(error);
+    res.render('index', { title: 'Twitter Political Scraper', info: tweets });
+  });
 });
 
 module.exports = router;

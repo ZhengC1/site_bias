@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Input your twitter name
-  form.row(method='get' action='/twitter')
+  form.row(method='post' action='/twitter')
     .col-md-12
       .block
           input(type="text", placeholder="Screen Name", name="search_id")
