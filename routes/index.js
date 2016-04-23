@@ -16,10 +16,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/twitter', function(req, res, next) {
-  var params = { 'q': '#'+req.body.screen_name, 'count': 10 };
+  var params = { screen_name: req.body.screen_name };
   client.getSearch(params, function(error, tweets) {
     if(error) console.log(error);
     res.render('index', { title: 'Twitter Political Scraper', info: tweets });
+  });
+  client.stream('statuses/filter', {track: params}, function(stream) {
+    stream.on('data', function(data){
+      console.log(params.text);
+    });
+    stream.on('error', function(error){
+      console.log(error);
+    });
   });
 });
 

@@ -6,8 +6,8 @@ block content
   form.row(method='post' action='/twitter')
     .col-md-12
       .block
-          input(type="text", placeholder="Screen Name", name="screen_name")
-          button(type='submit') test
+          input(type="text", placeholder="Screen Name", name="search_id")
+          button(type='submit') submit 
 
   each tweet in info.length ? info : ['']
     p= tweet.text
