@@ -28,7 +28,7 @@ fs.readFile('public/tweets/negative.txt', function(err,data) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Twitter Political Scraper', info: []});
+  res.render('index', { title: 'Twitter Sentiment Analysis Scraper', info: []});
 });
 
 router.post('/searchname', function(req,res) {
@@ -56,8 +56,17 @@ router.post('/searchname', function(req,res) {
           }
       }
     }
-    res.render('index', { title: 'Tweets', info: tweets, positive: pos_count, negative: neg_count});
+    res.render('searchname', { info: tweets, positive: pos_count, negative: neg_count});
   });
 });
+
+router.get('/searchname', function(req, res, next){
+    res.render('searchname', { info: [], positive: 0, negative: 0}); 
+});
+
+router.get('/explaination', function(req, res, next){
+    res.render('explaination');
+});
+
 
 module.exports = router;

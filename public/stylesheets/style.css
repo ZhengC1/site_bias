@@ -3,9 +3,7 @@ body {
   background-size: cover;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-.title,p {
-   color: white; 
+.title,p { color: white; 
    font-family: "Georgia", serif; 
 }
 .middle
@@ -35,4 +33,29 @@ a {
 
 .space {
     padding-top: 25px;
+}
+
+.spacing
+{
+    padding: 15px;
+}
+
+.tweets
+{
+    text-align: center;
+    padding: 20px;
+    background-color:rgba(0, 0, 0, 0.3);
+}
+
+.answers
+{
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.explaination
+{
+    padding-top: 300px;
+    float: center;
+    text-align: left;
 }

@@ -1,0 +1,17 @@
+extend layout
+
+block content
+    div.answers
+        p Positive Feedback: 
+        p= positive
+        p Negative Feedback:
+        p= negative
+
+
+    each tweet in info ? info : ['']
+        div(class="row spacing")
+            div(class="col tweets")
+                p= tweet.text
+
+
+

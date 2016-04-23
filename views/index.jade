@@ -8,9 +8,5 @@ block content
      form(method='post' action='/searchname' class="form-inline space")
        input(type="text", placeholder="Screen Name", name="screen_name" class="form-control")
        button(class="btn btn-success" type='submit') submit 
-
-  each tweet in info ? info : ['']
-    div.row
-       div.col-md-8=tweet.text
        
 
