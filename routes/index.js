@@ -15,8 +15,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Twitter Political Scraper', info: [] });
 });
 
+router.post('/searchname', function(req,res) {
+  var params = { screen_name: req.body.screen_name, count: 100 };
+  console.log(req.body.screen_name);
+  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    res.render('index', { title: 'Tweets', info: tweets });
+  });
+});
+
 router.post('/twitter', function(req, res, next) {
-  var params = { screen_name: req.body.screen_name };
+  var params = { screen_name: req.body.search_id };
   client.stream('statuses/filter', {track: 'trump'}, function(stream) {
     stream.on('data', function(data){
       console.log(data.text);
