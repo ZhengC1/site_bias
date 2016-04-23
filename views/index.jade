@@ -9,5 +9,5 @@ block content
           input(type="text", placeholder="Screen Name", name="search_id")
           button(type='submit') submit 
 
-  each tweet in info.length ? info : ['']
+  each tweet in info ? info : ['']
     p= tweet.text

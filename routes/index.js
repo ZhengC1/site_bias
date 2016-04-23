@@ -12,14 +12,14 @@ var client = new Twitter({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Twitter Political Scraper', info: [] });
+  res.render('index', { title: 'Twitter Political Scraper', info: []});
 });
 
 router.post('/twitter', function(req, res, next) {
-   var params = { screen_name: req.body.screen_name };
-   client.stream('statuses/filter', {track: 'trump'}, function(stream) {
+   var params = { screen_name: req.body.screen_id};
+   client.stream('statuses/filter', {track: 'trump', count: 100}, function(stream) {
       stream.on('data', function(data){
-          console.log(data.text);
+          res.render('index', { title: 'results', info: data.slice[0, 100]});
       });
       stream.on('error', function(error){
           console.log(error);
