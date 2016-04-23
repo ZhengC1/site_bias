@@ -21,9 +21,9 @@ body {
     text-align: center;
 }
 
-div > p
+h3
 {
-    color: white;
+    color: white !important;
     text-align: center;
 }
 
@@ -56,6 +56,5 @@ a {
 .explaination
 {
     padding-top: 300px;
-    float: center;
     text-align: left;
 }
