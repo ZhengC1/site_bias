@@ -12,6 +12,8 @@ var client = new Twitter({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log(process.env.positive);
+  console.log(process.env.negative);
   res.render('index', { title: 'Twitter Political Scraper', info: []});
 });
 

@@ -12,17 +12,15 @@ var app = express();
 
 //parse text files here
 var fs = require('fs');
-var _negative = new Array();
-var _positive = new Array();
 
 fs.readFile('public/tweets/positive.txt', function(err,data) {
   if(err) throw err;
-  _positive = data.toString().split('\n');
+  process.env.positive = data.toString().split('\n');
 });
 
 fs.readFile('public/tweets/negative.txt', function(err,data) {
   if(err) throw err;
-  _negative = data.toString().split('\n');
+  process.env.negative = data.toString().split('\n');
 });
 
 // view engine setup
