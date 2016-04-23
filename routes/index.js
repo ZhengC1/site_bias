@@ -32,30 +32,33 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/searchname', function(req,res) {
-  var params = { screen_name: req.body.screen_name, count: 100 };
+  var params = { screen_name: req.body.screen_name, count: 1 };
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
-    var tweetArr = new Array();
-    var neg_count = 0
-    var pos_count = 0
-
-    var line = []
+    var neg_count = 0;
+    var pos_count = 0;
+    console.log(positive.length);
+    console.log(negative.length);
     for(var i = 0; i < tweets.length; i++)
     {
-        var line = tweets[i].text.split(" ");
-        for(j in positive)
-        {
-            for(k in line)
-                {
-                    if(line[k] === positive[j])
-                        {
-                            pos_count++;
-                            console.log(pos_count);
-                        }
-
-                }
+      var line = tweets[i].text.split(" ");
+      for(j = 0; j < line.length; j++)
+      {
+        for (q=0;q<negative.length;q++) {
+          if (q<positive.length) {
+            if (line[j]===positive[q]) {
+              pos_count++;
+              break;
+            }
+          }
+          if (line[j]===negative[q]) {
+            neg_count++;
+            break;
+          }
         }
-        tweetArr.push(line);
+      }
     }
+    console.log(pos_count);
+    console.log(neg_count);
     res.render('index', { title: 'Tweets', info: tweets});
   });
 });
