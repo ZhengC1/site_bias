@@ -12,14 +12,14 @@ var client = new Twitter({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Twitter Political Scraper' });
+  res.render('index', { title: 'Twitter Political Scraper', info: [] });
 });
 
 router.get('/twitter', function(req, res, next) {
-  var params = {screen_name: 'apphack7'};
-  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  var params = { screen_name: req.screen_name };
+  client.get('search/tweets', params, function(error, tweets, response) {
     if(error) console.log(error);
-    res.render('index', { title: 'Twitter Political Scraper', info: tweets.length });
+    res.render('index', { title: 'Twitter Political Scraper', info: tweets });
   });
 });
 
