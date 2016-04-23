@@ -17,16 +17,14 @@ router.get('/', function(req, res, next) {
 
 router.post('/searchname', function(req,res) {
   var params = { screen_name: req.body.screen_name, count: 100 };
-  var info = []
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
     var tweetArr = new Array();
     for(var i = 0; i < tweets.length; i++)
     {
-        tweetArr.push(tweets[i].text);
+        tweetArr.push((tweets[i].text).split(" "));
     }
-    
     console.log(tweetArr);
-    res.render('index', { title: 'Tweets', info: tweetArr });
+    res.render('index', { title: 'Tweets', info: tweetArr});
   });
 });
 
