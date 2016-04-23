@@ -12,13 +12,21 @@ var client = new Twitter({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Twitter Political Scraper', info: []});
+  res.render('index', { title: 'Twitter Political Scraper', info: [], cat: []});
 });
 
 router.post('/searchname', function(req,res) {
   var params = { screen_name: req.body.screen_name, count: 100 };
+  var info = []
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
-    res.render('index', { title: 'Tweets', info: tweets });
+
+    for(var i = 0; i < tweets.length; i++)
+    {
+        info.push(tweets[i].text);
+    }
+    
+    console.log(info);
+    res.render('index', { title: 'Tweets', info: [], cat: info});
   });
 });
 
