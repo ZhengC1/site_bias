@@ -28,8 +28,6 @@ fs.readFile('public/tweets/negative.txt', function(err,data) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(process.env.positive instanceof Array);
-  console.log(process.env.negative instanceof Array);
   res.render('index', { title: 'Twitter Political Scraper', info: []});
 });
 
@@ -40,11 +38,22 @@ router.post('/searchname', function(req,res) {
     var neg_count = 0
     var pos_count = 0
 
-    console.log(positive instanceof Array);
     var line = []
     for(var i = 0; i < tweets.length; i++)
     {
         var line = tweets[i].text.split(" ");
+        for(j in positive)
+        {
+            for(k in line)
+                {
+                    if(line[k] === positive[j])
+                        {
+                            pos_count++;
+                            console.log(pos_count);
+                        }
+
+                }
+        }
         tweetArr.push(line);
     }
     res.render('index', { title: 'Tweets', info: tweets});
