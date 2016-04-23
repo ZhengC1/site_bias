@@ -12,28 +12,22 @@ var client = new Twitter({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Twitter Political Scraper', info: [] });
+  res.render('index', { title: 'Twitter Political Scraper', info: [], cat: []});
 });
 
 router.post('/searchname', function(req,res) {
   var params = { screen_name: req.body.screen_name, count: 100 };
+  var info = []
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
-    res.render('index', { title: 'Tweets', info: tweets });
+    var tweetArr = new Array();
+    for(var i = 0; i < tweets.length; i++)
+    {
+        tweetArr.push(tweets[i].text);
+    }
+    
+    console.log(tweetArr);
+    res.render('index', { title: 'Tweets', info: tweetArr });
   });
-});
-
-/*
-router.post('/twitter', function(req, res, next) {
-  var params = { screen_name: req.body.screen_name };
-  client.stream('statuses/filter', {track: 'trump'}, function(stream) {
-    stream.on('data', function(data){
-      console.log(data.text);
-    });
-    stream.on('error', function(error){
-      console.log(error);
-    });
-  });
-  */
 });
 
 module.exports = router;

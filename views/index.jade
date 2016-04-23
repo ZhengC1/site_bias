@@ -9,5 +9,7 @@ block content
           input(type="text", placeholder="Screen Name", name="screen_name")
           button(type='submit') submit 
 
-  each tweet in info.length ? info : ['']
-    p= tweet.text
+  each tweet in info ? info : ['']
+    p= tweet
+
+  p=cat
