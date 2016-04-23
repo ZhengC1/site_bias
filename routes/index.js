@@ -10,10 +10,26 @@ var client = new Twitter({
   access_token_secret: 'S5ZL9cMCazTwbGeV6hGdpkmlbuIagkLqk1trP9N2zYxgR'
 });
 
+//parse text files here
+var fs = require('fs');
+var positive = new Array();
+var negative = new Array();
+
+fs.readFile('public/tweets/positive.txt', function(err,data) {
+  if(err) throw err;
+  positive.push(data.toString().split('\n'));
+});
+
+fs.readFile('public/tweets/negative.txt', function(err,data) {
+  if(err) throw err;
+  negative.push(data.toString().split('\n'));
+});
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(process.env.positive);
-  console.log(process.env.negative);
+  console.log(process.env.positive instanceof Array);
+  console.log(process.env.negative instanceof Array);
   res.render('index', { title: 'Twitter Political Scraper', info: []});
 });
 
@@ -23,28 +39,14 @@ router.post('/searchname', function(req,res) {
     var tweetArr = new Array();
     var neg_count = 0
     var pos_count = 0
+
+    console.log(positive instanceof Array);
+    var line = []
     for(var i = 0; i < tweets.length; i++)
     {
         var line = tweets[i].text.split(" ");
-        for(j = 0; j < line.length; j++)
-        {
-            if(line[j] in process.env.positive)
-            {
-                pos_count++;
-            }
-        }
-        for(j = 0; j < line.length; j++)
-        {
-            if(line[j] in process.env.negative)
-            {
-                neg_count++;
-            }
-        }
-        tweetArr.push((tweets[i].text).split(" "));
+        tweetArr.push(line);
     }
-    console.log(tweetArr);
-    console.log(pos_count);
-    console.log(neg_count);
     res.render('index', { title: 'Tweets', info: tweets});
   });
 });
