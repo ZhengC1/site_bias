@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Input your twitter name
-  form.row(method='post' action='/searchname')
-    .col-md-12
-      .block
-          input(type="text", placeholder="Screen Name", name="screen_name")
-          button(type='submit') submit 
+ div(class="row words middle")
+   h1.title= title
+   div.words 
+     p Input your twitter name
+     form(method='post' action='/searchname' class="form-inline space")
+       input(type="text", placeholder="Screen Name", name="screen_name" class="form-control")
+       button(class="btn btn-success" type='submit') submit 
 
   each tweet in info ? info : ['']
     div.row

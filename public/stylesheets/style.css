@@ -1,13 +1,38 @@
 body {
-  padding: 50px;
+  background-image: url(/img/wood.jpg);
+  background-size: cover;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.title,p {
+   color: white; 
+   font-family: "Georgia", serif; 
+}
+.middle
+{
+   left: 0;
+   margin: auto;
+   margin-top: -100px;
+   position: absolute;
+   top: 50%;
+   width: 100%;
+}
+
+.words
+{
+    text-align: center;
+}
+
+div > p
+{
+    color: white;
+    text-align: center;
 }
 
 a {
   color: #00B7FF;
 }
 
-.block
-{
-    padding: 15px;
+.space {
+    padding-top: 25px;
 }
