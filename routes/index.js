@@ -22,6 +22,7 @@ router.post('/searchname', function(req,res) {
   });
 });
 
+/*
 router.post('/twitter', function(req, res, next) {
   var params = { screen_name: req.body.screen_name };
   client.stream('statuses/filter', {track: 'trump'}, function(stream) {
@@ -32,6 +33,7 @@ router.post('/twitter', function(req, res, next) {
       console.log(error);
     });
   });
+  */
 });
 
 module.exports = router;
