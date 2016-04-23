@@ -56,7 +56,7 @@ router.post('/searchname', function(req,res) {
           }
       }
     }
-    res.render('index', { title: 'Tweets', info: tweets});
+    res.render('index', { title: 'Tweets', info: tweets, positive: pos_count, negative: neg_count});
   });
 });
 
