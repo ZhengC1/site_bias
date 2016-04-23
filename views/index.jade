@@ -3,8 +3,6 @@ extends layout
 block content
   h1= title
   p Input your twitter name
-  form.row(method='get' action='twitter')
-    .col-md-12
-      .block
-          input(type="text", placeholder="yourname")
-          a(href="/test") test
+  form(method='post' action='twitter')
+    div.input
+        span.label Title
