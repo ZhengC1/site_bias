@@ -15,16 +15,23 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Twitter Political Scraper', info: []});
 });
 
-router.post('/twitter', function(req, res, next) {
-   var params = { screen_name: req.body.screen_id};
-   client.stream('statuses/filter', {track: 'trump', count: 100}, function(stream) {
-      stream.on('data', function(data){
-          res.render('index', { title: 'results', info: data.slice[0, 100]});
-      });
-      stream.on('error', function(error){
-          console.log(error);
-      });
-    });
+router.post('/searchname', function(req,res) {
+  var params = { screen_name: req.body.screen_name, count: 100 };
+  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    res.render('index', { title: 'Tweets', info: tweets });
+  });
 });
+
+/*
+  var params = { screen_name: req.body.screen_name };
+  client.stream('statuses/filter', {track: 'trump'}, function(stream) {
+  stream.on('data', function(data){
+  console.log(data.text);
+  });
+  stream.on('error', function(error){
+  console.log(error);
+  });
+  });
+*/
 
 module.exports = router;
